@@ -5,7 +5,7 @@ There are two folders in this repository each project in folder :
 
 1. VOIS_Youtube: Contains Youtube frontend automation cases
 
-2. VOIS_REST_ASSURED: Contains RESTAPI Testing cases
+2. VOIS_REST_ASSURED: Contains RESTAPI Test cases
 # VOIS Youtube frontend testing
 
 This framework is used to execute test cases on "Youtube" Website
