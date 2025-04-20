@@ -10,11 +10,7 @@ public class homePage {
   private homePageCore homeP;
 
   public homePage(WebDriver driver) {
-    //        this.driver = driver;  // Initialize WebDriver
-    //        super();
-    this.homeP = new homePageCore(driver); // Initialize homePageCore with WebDriver
-
-    //        homeP = new homePageCore(DriverFactory.getDriver());
+    this.homeP = new homePageCore(driver); 
   }
 
   public void waitForPageLoading() {
