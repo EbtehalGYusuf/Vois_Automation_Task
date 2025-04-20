@@ -61,17 +61,9 @@ public class homePageCore {
 
   public homePageCore(WebDriver driver) {
     this.driver = driver;
-    //        this.driver = driver;
-    //        this.driver = DriverFactory.getDriver();  // Get driver from ThreadLocal context
-    this.driver = driver; // Use the driver passed from homePage, not from DriverFactory
-
     PageFactory.initElements(driver, this);
     wait = new WebDriverWait(driver, Duration.ofSeconds(20));
   }
-
-  // public homePageCore initialize(WebDriver driver){
-  //        return  PageFactory.initElements(driver, homePageCore.class);
-  // }
 
   public void search(String searchText) {
     wait.until(ExpectedConditions.elementToBeClickable(searchBox));
@@ -106,29 +98,22 @@ public class homePageCore {
   public void selectVideo(int videoIndex) {
     int i = videoIndex - 1;
     JavascriptExecutor js = (JavascriptExecutor) driver;
-
     try {
       // Scroll the video into view
       js.executeScript("arguments[0].scrollIntoView(true);", searchResults.get(i));
-
       // Wait until the element is clickable
       wait.until(ExpectedConditions.elementToBeClickable(searchResults.get(i)));
-
-      // Click the element
       searchResults.get(i).click();
-
       // Wait until the video element is visible
       wait.until(ExpectedConditions.visibilityOfAllElements(video));
     } catch (StaleElementReferenceException e) {
       // If stale, re-locate the element and retry
       System.out.println("Stale Element Reference, retrying...");
-
       // Re-locate the element and retry clicking
       List<WebElement> videoElement =
           driver.findElements(
               SEARCHRESULT); // re-locate element by XPath or another suitable selector
       videoElement.get(i).click();
-
       // Wait until the video is visible
       wait.until(ExpectedConditions.visibilityOfAllElements(video));
     } catch (NoSuchElementException | TimeoutException | IndexOutOfBoundsException t) {
